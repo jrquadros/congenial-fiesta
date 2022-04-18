@@ -1,0 +1,14 @@
+{
+  "name": "congenial-fiesta",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jrquadros/congenial-fiesta.git",
+  "author": "jrquadros <jrmquadros@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "ts:watch": "tsc --watch"
+  }
+}
