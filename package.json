@@ -8,6 +8,8 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
@@ -28,5 +30,9 @@
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "dev": "nodemon"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
   }
 }
