@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  pg-database:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+    ports:
+      - 127.0.0.1:5432:5432
+    env_file:
+      - .env
+  test-db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "test"
+    ports:
+      - 127.0.0.1:5431:5432
