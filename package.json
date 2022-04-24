@@ -28,8 +28,8 @@
     "ts:watch": "tsc --watch",
     "lint": "eslint src/**/*.ts",
     "prepare": "husky install",
-    "test": "jest --passWithNoTests",
-    "test:watch": "jest --watch",
+    "test": "NODE_ENV=test jest --passWithNoTests",
+    "test:watch": "NODE_ENV=test jest --watch",
     "dev": "nodemon"
   },
   "dependencies": {

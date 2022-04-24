@@ -1,8 +1,5 @@
 import { app } from './app';
-import dontenv from 'dotenv';
 import { connectDatabase } from './utils/connectDatabase';
-
-dontenv.config();
 
 const { SERVER_PORT } = process.env;
 
