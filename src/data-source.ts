@@ -1,10 +1,11 @@
 import { DataSource } from 'typeorm';
 
 import { environment } from './config/environment';
+import { UserEntity } from './entities/user';
 
-const { DB_USER, POSTGRES_DB, POSTGRES_PASSWORD } = environment;
+const { DB_USER, POSTGRES_DB, POSTGRES_PASSWORD, NODE_ENV } = environment;
 
-export const AppDataSource = new DataSource({
+const appDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5432,
@@ -13,12 +14,12 @@ export const AppDataSource = new DataSource({
   database: POSTGRES_DB,
   synchronize: true,
   logging: true,
-  entities: [],
+  entities: [UserEntity],
   subscribers: [],
   migrations: [],
 });
 
-export const TestDataSource = new DataSource({
+const testDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5431,
@@ -27,7 +28,9 @@ export const TestDataSource = new DataSource({
   database: 'test',
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [UserEntity],
   subscribers: [],
   migrations: [],
 });
+
+export const dataSource = NODE_ENV === 'test' ? testDataSource : appDataSource;
