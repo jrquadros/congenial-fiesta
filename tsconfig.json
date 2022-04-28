@@ -9,6 +9,12 @@
     "moduleResolution": "node" /* Specify module resolution strategy: node (Node.js) or classic (TypeScript pre-1.6). */,
     "outDir": "./dist" /* Redirect output structure to the directory. */,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": false
   }
 }
