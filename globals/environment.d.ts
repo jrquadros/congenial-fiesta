@@ -6,6 +6,7 @@ declare global {
       DB_USER: string;
       POSTGRES_PASSWORD: string;
       POSTGRES_DB: string;
+      SECRET_KEY: string;
     }
   }
 }
