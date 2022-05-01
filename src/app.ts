@@ -1,10 +1,10 @@
 import express from 'express';
+import { router } from './router';
 import 'reflect-metadata';
 
 const app = express();
 
 app.use(express.json());
-
-app.get('/', (_, res) => res.json({ message: 'Hello World' }));
+app.use('/api', router);
 
 export { app };
