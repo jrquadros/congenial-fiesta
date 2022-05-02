@@ -1,3 +1,4 @@
 import { register } from './register';
+import { auth } from './auth';
 
-export const userController = { register };
+export const userController = { register, auth };
