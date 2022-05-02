@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { RegisterReqBody } from './register';
+import { RegisterReqBody } from '../register';
 
 export const userSchema = yup.object().shape({
   email: yup.string().email().required(),
