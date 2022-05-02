@@ -1,3 +1,10 @@
+import { AddressEntity } from './address';
+import { UserEntity } from './user';
+
+export type User = UserEntity;
+
+export type Address = AddressEntity;
+
 export enum CountryEnum {
   Afghanistan = 'AF',
   AlandIslands = 'AX',
