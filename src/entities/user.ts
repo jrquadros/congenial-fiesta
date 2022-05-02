@@ -6,7 +6,7 @@ export class UserEntity {
   @Column() firstName: string;
   @Column() lastName: string;
   @Column({ unique: true }) email: string;
-  @Column() password: string;
+  @Column({ select: false }) password: string;
   @Column({ default: true }) isActive: boolean;
   @Column('timestamp with time zone', { nullable: false, default: () => 'CURRENT_TIMESTAMP' })
   // https://github.com/typescript-eslint/typescript-eslint/issues/1824
