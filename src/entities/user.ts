@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { AddressEntity } from './address';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid') id: string;
@@ -12,7 +11,4 @@ export class UserEntity {
   // https://github.com/typescript-eslint/typescript-eslint/issues/1824
   // eslint-disable-next-line @typescript-eslint/indent
   createdAt: Date;
-  @OneToMany(() => AddressEntity, (address) => address.owner) addresses: AddressEntity[];
 }
-
-export type User = UserEntity;

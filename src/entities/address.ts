@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CountryEnum } from './types';
 import { UserEntity } from './user';
 
@@ -10,6 +10,8 @@ export class AddressEntity {
   @Column() city: string;
   @Column() street: string;
   @Column() houseNumber: string;
-
-  @ManyToOne(() => UserEntity, (user) => user.addresses) owner: UserEntity;
+  @ManyToOne(() => UserEntity)
+  @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
+  // eslint-disable-next-line @typescript-eslint/indent
+  owner: UserEntity;
 }
