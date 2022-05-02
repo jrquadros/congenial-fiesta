@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm';
 
 import { environment } from './config/environment';
 import { UserEntity } from './entities/user';
+import { AddressEntity } from './entities/address';
 
 const { DB_USER, POSTGRES_DB, POSTGRES_PASSWORD, NODE_ENV } = environment;
 
@@ -14,7 +15,7 @@ const appDataSource = new DataSource({
   database: POSTGRES_DB,
   synchronize: true,
   logging: true,
-  entities: [UserEntity],
+  entities: [UserEntity, AddressEntity],
   subscribers: [],
   migrations: [],
 });
@@ -28,7 +29,7 @@ const testDataSource = new DataSource({
   database: 'test',
   synchronize: true,
   logging: false,
-  entities: [UserEntity],
+  entities: [UserEntity, AddressEntity],
   subscribers: [],
   migrations: [],
 });
