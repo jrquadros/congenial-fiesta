@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
 @Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid') id: string;
@@ -13,5 +12,3 @@ export class UserEntity {
   // eslint-disable-next-line @typescript-eslint/indent
   createdAt: Date;
 }
-
-export type User = UserEntity;

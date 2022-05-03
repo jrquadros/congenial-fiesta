@@ -1,8 +1,8 @@
 import { RequestHandler } from 'express';
-import { User } from '../../entities/user';
+import { User } from '../../entities/types';
 import { userRepository } from '../../repositories/userRepository';
 import { hashPassword } from '../../utils/hashPassword';
-import { validateRegister } from './register.validation';
+import { validateRegister } from './validations/register.validation';
 
 export type RegisterReqBody = Omit<User, 'id' | 'createdAt' | 'isActive'>;
 
@@ -13,7 +13,7 @@ export const register: RequestHandler<unknown, unknown, RegisterReqBody> = async
     const { error } = await validateRegister(req.body);
 
     if (error) {
-      res.status(400).send(error);
+      res.status(400).json(error).send();
     }
 
     const userALreadyExists = await userRepository.findOne({ where: { email } });
