@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
+import { AddressEntity } from '../../entities/address';
 import { Address } from '../../entities/types';
-import { addressRepository } from '../../repositories/addressRepository';
 import { userRepository } from '../../repositories/userRepository';
 import { getTokenPayload } from '../../utils/getTokenPayload';
 import { validateCreateAddress } from './validations/createAddress.validation';
@@ -18,31 +18,37 @@ export const createAddress: RequestHandler<unknown, unknown, CreateAddressReqBod
       return res.status(400).json(error).send();
     }
 
-    const token = req.headers.token;
+    const token = req.headers?.token;
 
     const payload = getTokenPayload(token as string);
 
     const { id } = payload;
 
-    const owner = await userRepository.findOneBy({ id });
+    const user = await userRepository.findOne({
+      where: { id },
+      relations: { addresses: true },
+      select: ['id', 'addresses'],
+    });
 
-    if (!owner) return res.status(401).send();
+    if (!user) return res.status(401).send();
 
     const { city, country, houseNumber, postalCode, street } = req.body;
 
-    const address = await addressRepository.save({
+    const userAddresss = user?.addresses || [];
+
+    const newAddress = {
       city,
       country,
       houseNumber,
       postalCode,
       street,
-      owner,
-    });
+    } as AddressEntity;
 
-    return res
-      .json({ message: 'Adress created sucessfuly', address: address.id })
-      .status(201)
-      .send();
+    user.addresses = [...userAddresss, newAddress];
+
+    await userRepository.save(user);
+
+    return res.json({ message: 'Address created' }).status(201).send();
   } catch (error) {
     return res.json({ error: 'Internal server error' }).status(500).send();
   }
