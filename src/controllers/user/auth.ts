@@ -16,7 +16,7 @@ export const auth: RequestHandler<unknown, unknown, AuthReqBody> = async (req, r
     return res.status(400).json({ error: 'Missing email or password' }).send();
   }
 
-  const user = await userRepository.findOne({ where: { email }, select: ['password'] });
+  const user = await userRepository.findOne({ where: { email }, select: ['password', 'id'] });
 
   if (!user) {
     return res.status(404).json({ error: 'User not found' }).send();
