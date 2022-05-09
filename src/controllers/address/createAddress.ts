@@ -1,7 +1,8 @@
-import { RequestHandler } from 'express';
+import { RequestHandler, Request } from 'express';
 import { AddressEntity } from '../../entities/address';
 import { Address } from '../../entities/types';
 import { userRepository } from '../../repositories/userRepository';
+import { getToken } from '../../utils/getToken';
 import { getTokenPayload } from '../../utils/getTokenPayload';
 import { validateCreateAddress } from './validations/createAddress.validation';
 
@@ -18,7 +19,7 @@ export const createAddress: RequestHandler<unknown, unknown, CreateAddressReqBod
       return res.status(400).json(error).send();
     }
 
-    const token = req.headers?.token;
+    const token = getToken(req as Request);
 
     const payload = getTokenPayload(token as string);
 
