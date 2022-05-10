@@ -5,6 +5,7 @@ import { addressController } from '../controllers/address/addressController';
 const addressRouter = express
   .Router()
   .post('/', verifyToken, addressController.createAddress)
-  .get('/', verifyToken, addressController.getAddresses);
+  .get('/', verifyToken, addressController.getAddresses)
+  .get('/:id', verifyToken, addressController.getAddressById);
 
 export { addressRouter };
