@@ -6,7 +6,7 @@ import { getToken } from '../../utils/getToken';
 import { getTokenPayload } from '../../utils/getTokenPayload';
 import { validateCreateAddress } from './validations/createAddress.validation';
 
-export type CreateAddressReqBody = Omit<Address, 'id' | 'owner'>;
+export type CreateAddressReqBody = Omit<Address, 'id' | 'user'>;
 
 export const createAddress: RequestHandler<unknown, unknown, CreateAddressReqBody> = async (
   req,
