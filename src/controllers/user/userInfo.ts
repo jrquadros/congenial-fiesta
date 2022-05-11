@@ -1,9 +1,10 @@
 import { RequestHandler } from 'express';
 import { userRepository } from '../../repositories/userRepository';
+import { getToken } from '../../utils/getToken';
 import { getTokenPayload } from '../../utils/getTokenPayload';
 
 export const userInfo: RequestHandler = async (req, res) => {
-  const token = req.headers.token;
+  const token = getToken(req);
 
   const payload = getTokenPayload(token as string);
 

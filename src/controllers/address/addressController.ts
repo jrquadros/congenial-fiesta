@@ -1,3 +1,6 @@
 import { createAddress } from './createAddress';
+import { getAddresses } from './getAddresses';
+import { getAddressById } from './getAddressById';
+import { editAddress } from './editAddress';
 
-export const addressController = { createAddress };
+export const addressController = { createAddress, getAddresses, getAddressById, editAddress };
