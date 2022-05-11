@@ -23,8 +23,6 @@ export const editUser: RequestHandler<unknown, unknown, EditUserReqBody> = async
 
     const password = plainTextPassword && hashPassword(plainTextPassword);
 
-    console.log(userId);
-
     const result = await userRepository.update(
       { id: userId },
       { email, firstName, lastName, password }
@@ -36,7 +34,6 @@ export const editUser: RequestHandler<unknown, unknown, EditUserReqBody> = async
 
     return res.json({ message: 'User updated' }).status(204).send();
   } catch (error) {
-    console.log(error);
     return res.status(500).send();
   }
 };
