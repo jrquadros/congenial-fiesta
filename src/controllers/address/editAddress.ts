@@ -50,7 +50,7 @@ export const editAddress: RequestHandler<
       return res.status(404).send();
     }
 
-    return res.json({ message: 'Address updated' }).status(200).send();
+    return res.json({ message: 'Address updated' }).status(204).send();
   } catch (error) {
     return res.status(500).send();
   }
