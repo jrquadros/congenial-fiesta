@@ -11,7 +11,7 @@ export const userInfo: RequestHandler = async (req, res) => {
   const { id } = payload;
 
   try {
-    const user = await userRepository.findOne({ where: { id } });
+    const user = await userRepository.findOne({ where: { id }, relations: ['addresses'] });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' }).send();
