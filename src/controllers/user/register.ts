@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+import { environment } from '../../config/environment';
 import { User } from '../../entities/types';
 import { userRepository } from '../../repositories/userRepository';
 import { hashPassword } from '../../utils/hashPassword';
@@ -22,7 +23,7 @@ export const register: RequestHandler<unknown, unknown, RegisterReqBody> = async
       return res.status(409).json({ error: 'User already exists' }).send();
     }
 
-    const hash = hashPassword(password);
+    const hash = hashPassword(password, environment.SECRET_KEY as string);
 
     const { id } = await userRepository.save({ ...req.body, password: hash });
 

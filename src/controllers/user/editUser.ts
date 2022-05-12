@@ -1,4 +1,5 @@
 import { RequestHandler, Request } from 'express';
+import { environment } from '../../config/environment';
 import { User } from '../../entities/types';
 import { userRepository } from '../../repositories/userRepository';
 import { getToken } from '../../utils/getToken';
@@ -21,7 +22,8 @@ export const editUser: RequestHandler<unknown, unknown, EditUserReqBody> = async
 
     const { email, firstName, lastName, password: plainTextPassword } = req.body;
 
-    const password = plainTextPassword && hashPassword(plainTextPassword);
+    const password =
+      plainTextPassword && hashPassword(plainTextPassword, environment.SECRET_KEY as string);
 
     const result = await userRepository.update(
       { id: userId },

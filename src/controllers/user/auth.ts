@@ -22,7 +22,7 @@ export const auth: RequestHandler<unknown, unknown, AuthReqBody> = async (req, r
     return res.status(404).json({ error: 'User not found' }).send();
   }
 
-  const hashed = hashPassword(password);
+  const hashed = hashPassword(password, environment.SECRET_KEY as string);
 
   if (user.password !== hashed) {
     return res.status(401).json({ error: 'Wrong password' }).send();
