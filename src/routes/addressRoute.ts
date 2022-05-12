@@ -7,6 +7,7 @@ const addressRouter = express
   .post('/', verifyToken, addressController.createAddress)
   .get('/', verifyToken, addressController.getAddresses)
   .get('/:id', verifyToken, addressController.getAddressById)
-  .put('/:id', verifyToken, addressController.editAddress);
+  .put('/:id', verifyToken, addressController.editAddress)
+  .delete('/:id', verifyToken, addressController.deleteAddress);
 
 export { addressRouter };
