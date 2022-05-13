@@ -27,11 +27,12 @@ const testDataSource = new DataSource({
   username: 'postgres',
   password: 'postgres',
   database: 'test',
-  synchronize: true,
   logging: false,
   entities: [UserEntity, AddressEntity],
   subscribers: [],
   migrations: [],
+  dropSchema: true,
+  synchronize: true,
 });
 
 export const dataSource = NODE_ENV === 'test' ? testDataSource : appDataSource;
